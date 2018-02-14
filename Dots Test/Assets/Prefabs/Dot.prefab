@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 224275496690838282}
   - component: {fileID: 222714796415715772}
   - component: {fileID: 114606006950040142}
-  - component: {fileID: 114107060465888420}
   - component: {fileID: 114173509341332980}
   - component: {fileID: 50868593076653660}
+  - component: {fileID: 114080399364169938}
   m_Layer: 5
   m_Name: Dot
   m_TagString: Untagged
@@ -51,7 +51,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &114107060465888420
+--- !u!114 &114080399364169938
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953657852541994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mImage: {fileID: 114606006950040142}
-  mButton: {fileID: 114107060465888420}
 --- !u!114 &114606006950040142
 MonoBehaviour:
   m_ObjectHideFlags: 1

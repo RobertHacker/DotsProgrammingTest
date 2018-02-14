@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Dot : MonoBehaviour {
+public class Dot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler {
     //Enums
     public enum DotColor
     {
@@ -25,9 +26,6 @@ public class Dot : MonoBehaviour {
     //Variables
     [SerializeField]
     private Image mImage;
-
-    [SerializeField]
-    private Button mButton;
 
     private DotColor mColor;
     public DotColor CurrentColor
@@ -60,9 +58,20 @@ public class Dot : MonoBehaviour {
         set { mNode = value; }
     }
 
+    private bool mSelected = false;
+    public bool Selected
+    {
+        get { return mSelected; }
+        set { mSelected = value; }
+    }
+
     //Events
     public delegate void OnDotClicked(Dot thisDot);
     public event OnDotClicked OnDotClickedEvent;
+
+    public delegate void OnDotEntered(Dot thisDot);
+    public event OnDotEntered OnDotEnteredEvent;
+    
 
     //Public Functions
     public void InitDot(int DotID)
@@ -71,13 +80,32 @@ public class Dot : MonoBehaviour {
         CurrentColor = DotColor.Blank;
         CurrentType = DotType.Default;
         mNode = null;
-        mButton.onClick.AddListener(DotScored);
+    }
+
+    public void DotScored()
+    {
+        if (mNode != null)
+        {
+            mNode.Contents = null;
+        }
+    }
+
+    public void OnPointerDown(PointerEventData data)
+    {
+        if (OnDotClickedEvent != null)
+            OnDotClickedEvent(this);
+    }
+
+    public void OnPointerEnter(PointerEventData data)
+    {
+        if (OnDotEnteredEvent != null)
+            OnDotEnteredEvent(this);
     }
 
     //Private Functions
     void Update()
     {
-
+        
     }
 
     private void ChangeColor()
@@ -104,15 +132,5 @@ public class Dot : MonoBehaviour {
                 break;
         }
     }
-
-    private void DotScored()
-    {
-        if(mNode != null)
-        {
-            mNode.Contents = null;
-        }
-
-        if(OnDotClickedEvent != null)
-            OnDotClickedEvent(this);
-    }
+    
 }

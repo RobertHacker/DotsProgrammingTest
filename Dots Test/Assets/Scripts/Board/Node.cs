@@ -51,15 +51,25 @@ public class Node : MonoBehaviour {
         }
     }
 
-    private bool mSelected = false;
-    public bool Selected
-    {
-        get { return mSelected; }
-        set { mSelected = value; }
-    }
-
     [SerializeField] 
     private SpringJoint2D mDotAnchor;
+
+    //Public functions
+    public bool DotIDAdjacent(int ID)
+    {
+        bool adjacent = false;
+
+        if (Above != null && Above.Contents.ID == ID)
+            adjacent = true;
+        else if (Below != null && Below.Contents.ID == ID)
+            adjacent = true;
+        else if (Right != null && Right.Contents.ID == ID)
+            adjacent = true;
+        else if (Left != null && Left.Contents.ID == ID)
+            adjacent = true;
+
+        return adjacent;
+    }
 
     //Private Functions
     void Update()

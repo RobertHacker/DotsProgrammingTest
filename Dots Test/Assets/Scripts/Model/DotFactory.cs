@@ -41,7 +41,7 @@ public class DotFactory : MonoBehaviour{
 
     public void AddDotToPool(Dot toReturn)
     {
-        toReturn.gameObject.transform.position = new Vector2(BoardSettings.DOT_STORAGE_X, BoardSettings.DOT_STORAGE_Y);
+        toReturn.gameObject.transform.position = new Vector2(BoardSettings.STORAGE_AREA_X, BoardSettings.STORAGE_AREA_Y);
         toReturn.transform.SetParent(this.transform);
         mDotPool.Add(toReturn);
     }
@@ -65,7 +65,7 @@ public class DotFactory : MonoBehaviour{
     {
         GameObject newDot = GameObject.Instantiate(DotPrefab, this.transform);
         Dot dotComp = newDot.GetComponent<Dot>();
-        dotComp.transform.position = new Vector3(BoardSettings.DOT_STORAGE_X, BoardSettings.DOT_STORAGE_Y);
+        dotComp.transform.position = new Vector3(BoardSettings.STORAGE_AREA_X, BoardSettings.STORAGE_AREA_Y);
         dotComp.InitDot(++mDotsCreated);
         return dotComp;
     }

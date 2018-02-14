@@ -302,6 +302,7 @@
     <Compile Include="Assets\Scripts\Controllers\IController.cs" />
     <Compile Include="Assets\Scripts\Dots\Dot.cs" />
     <Compile Include="Assets\Scripts\Model\BoardSettings.cs" />
+    <Compile Include="Assets\Scripts\Model\ConnectionFactory.cs" />
     <Compile Include="Assets\Scripts\Model\DotFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

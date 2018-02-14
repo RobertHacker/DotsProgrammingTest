@@ -14,7 +14,6 @@ public class Board : MonoBehaviour {
     //Events
     public delegate Dot OnRequestDot();
     public event OnRequestDot OnRequestDotEvent;
-    
 
     //Public Functions
     public void InitBoard()
@@ -32,12 +31,12 @@ public class Board : MonoBehaviour {
             for (int c = BoardSettings.Columns - 1; c >= 0; c--)
             {
                 Node curNode = mNodes[r][c];
-                if(curNode.Contents == null && curNode.Above != null && curNode.Above.Contents != null)
+                if(curNode.Contents == null)
                 {
-                    curNode.Contents = curNode.Above.Contents;
-                    curNode.Above.Contents = null;
+                    GrabAboveDot(r, c, ref curNode);
                 }
             }
+            
         }
     }
 
@@ -87,6 +86,22 @@ public class Board : MonoBehaviour {
 
                 if (r != 0)
                     curNode.Left = mNodes[r - 1][c];
+            }
+        }
+    }
+
+    private void GrabAboveDot(int row, int column, ref Node startNode)
+    {
+        //Work up from the row to see if there are any dots to pull down
+        for (int c = column; c >= 0; c--)
+        {
+            Node toCheck = mNodes[row][c];
+            //If a dot is found then pull it down and break
+            if(toCheck.Contents != null)
+            {
+                startNode.Contents = toCheck.Contents;
+                toCheck.Contents = null;
+                break;
             }
         }
     }

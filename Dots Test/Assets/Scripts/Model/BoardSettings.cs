@@ -9,8 +9,8 @@ public static class BoardSettings {
     public static int Columns = 6;
 
     //Where to store the dots when not in use
-    public const float DOT_STORAGE_X = 10000;
-    public const float DOT_STORAGE_Y = 10000;
+    public const float STORAGE_AREA_X = 10000;
+    public const float STORAGE_AREA_Y = 10000;
 
     //This shouldn't be tied to the prefab since some dot images may have different sizes (for different type) but want spacing the same
     public const float DOT_DIAMETER = 30;
