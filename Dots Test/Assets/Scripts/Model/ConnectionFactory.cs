@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ConnectionFactory : MonoBehaviour {
 
@@ -19,7 +20,7 @@ public class ConnectionFactory : MonoBehaviour {
         ProduceConnections(numConnections);
     }
 
-    public GameObject ConnectionFromPool()
+    public GameObject ConnectionFromPool(Dot.DotColor dotColor)
     {
         GameObject toReturn;
         //Returns a Connection from the pool if one exists otherwise adds creates a new Connection
@@ -33,6 +34,8 @@ public class ConnectionFactory : MonoBehaviour {
             toReturn = ProduceConnection();
             Debug.LogWarning("Not enough Connections were originally created");
         }
+
+        ChangeConnectionColor(dotColor, ref toReturn);
 
         return toReturn;
     }
@@ -48,6 +51,32 @@ public class ConnectionFactory : MonoBehaviour {
     void Start()
     {
         mConnectionPool = new List<GameObject>();
+    }
+
+    private void ChangeConnectionColor(Dot.DotColor dotColor, ref GameObject connection)
+    {
+        Image image = connection.GetComponent<Image>();
+        switch (dotColor)
+        {
+            case Dot.DotColor.Red:
+                image.color = Color.red;
+                break;
+            case Dot.DotColor.Blue:
+                image.color = Color.blue;
+                break;
+            case Dot.DotColor.Yellow:
+                image.color = Color.yellow;
+                break;
+            case Dot.DotColor.Green:
+                image.color = Color.green;
+                break;
+            case Dot.DotColor.Purple:
+                image.color = Color.magenta;
+                break;
+            default:
+                image.color = Color.white;
+                break;
+        }
     }
 
     private void ProduceConnections(int numConnections)

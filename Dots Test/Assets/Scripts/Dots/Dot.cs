@@ -84,6 +84,8 @@ public class Dot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler {
 
     public void DotScored()
     {
+        mSelected = false;
+
         if (mNode != null)
         {
             mNode.Contents = null;
